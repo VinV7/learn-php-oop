@@ -1,17 +1,28 @@
 import { useState } from "react";
+import login from "../services/login_api";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) {
-      setError("Enter your email and password.");
+
+    if (!username || !password) {
+      setError("Enter your username and password.");
       return;
     }
+
     setError("");
+
+    login(
+        {
+            username : username,
+            password : password
+        }
+    )
   }
 
   return (
@@ -33,15 +44,15 @@ export default function Login() {
                 )}
 
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1">
-                    Email
+                    <label htmlFor="username" className="block text-sm font-medium mb-1">
+                    Username
                     </label>
                     <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
+                    id="username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="JeffVacation19"
                     className="w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     />
                 </div>
@@ -62,9 +73,10 @@ export default function Login() {
 
                 <button
                     type="submit"
-                    className="w-full py-2 rounded-md bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition"
+                    disabled={loading}
+                    className="w-full py-2 rounded-md bg-gray-900 text-white text-sm font-medium hover:bg-gray-800 transition disabled:opacity-50"
                 >
-                    Log in
+                    {loading ? "Logging in..." : "Log in"}
                 </button>
             </form>
 

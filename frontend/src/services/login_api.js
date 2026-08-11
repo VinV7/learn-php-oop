@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.API_URL
+const API_URL = import.meta.env.LOGIN_API_URL
 
 export default async function login(body) {
     const response = await fetch(
