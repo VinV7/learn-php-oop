@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.API_URL
+const API_URL = import.meta.env.REGISTER_API_URL
 
 export default async function register(body) {
     const response = await fetch(

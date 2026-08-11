@@ -1,4 +1,5 @@
 import { useState } from "react";
+import register from "../services/register_api";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -20,6 +21,14 @@ export default function Register() {
     }
 
     setError("");
+
+    register(
+      {
+        name     : name,
+        email    : email,
+        password : password
+      }
+    )
   }
 
   return (
