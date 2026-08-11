@@ -4,7 +4,7 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 
 
-function App() {
+export default function App() {
   return (
       <Routes>
           <Route path="/" element={<Login/>}/>
@@ -13,4 +13,3 @@ function App() {
   )
 }
 
-export default App
